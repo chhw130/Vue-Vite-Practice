@@ -1,10 +1,8 @@
-<script setup></script>
-
 <template>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">Navbar</a>
+				<RouterLink class="navbar-brand" to="/">GYM CODING</RouterLink>
 				<button
 					class="navbar-toggler"
 					type="button"
@@ -17,67 +15,51 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<ul class="navbar-nav me-auto">
 						<li class="nav-item">
-							<RouterLink class="nav-link" active-class="active" to="/"
-								>Home</RouterLink
-							>
+							<RouterLink class="nav-link" active-class="active" to="/">
+								Home
+							</RouterLink>
 						</li>
 						<li class="nav-item">
-							<RouterLink class="nav-link" active-class="active" to="/about"
-								>about</RouterLink
-							>
+							<RouterLink class="nav-link" active-class="active" to="/about">
+								About
+							</RouterLink>
 						</li>
 						<li class="nav-item">
-							<RouterLink class="nav-link" active-class="active" to="/posts"
-								>게시글</RouterLink
-							>
-						</li>
-						<div class="d-flex">
-							<button
-								class="btn btn-outline-success"
-								type="button"
-								@click="goPage"
-							>
-								굴쓰기
-							</button>
-						</div>
-						<li class="nav-item dropdown">
-							<a
-								class="nav-link dropdown-toggle"
-								href="#"
-								role="button"
-								data-bs-toggle="dropdown"
-								aria-expanded="false"
-							>
-								Dropdown
-							</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">Action</a></li>
-								<li><a class="dropdown-item" href="#">Another action</a></li>
-								<li><hr class="dropdown-divider" /></li>
-								<li>
-									<a class="dropdown-item" href="#">Something else here</a>
-								</li>
-							</ul>
+							<RouterLink class="nav-link" active-class="active" to="/posts">
+								게시글
+							</RouterLink>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link disabled" aria-disabled="true">Disabled</a>
+							<RouterLink class="nav-link" active-class="active" to="/nested">
+								Nested
+							</RouterLink>
+						</li>
+						<li class="nav-item">
+							<RouterLink class="nav-link" active-class="active" to="/my">
+								MyPage
+							</RouterLink>
 						</li>
 					</ul>
-					<form class="d-flex" role="search">
-						<input
-							class="form-control me-2"
-							type="search"
-							placeholder="Search"
-							aria-label="Search"
-						/>
-						<button class="btn btn-outline-success" type="submit">
-							Search
+					<div class="d-flex">
+						<button class="btn btn-outline-light" type="button" @click="goPage">
+							글쓰기
 						</button>
-					</form>
+					</div>
 				</div>
 			</div>
 		</nav>
 	</header>
 </template>
+
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const goPage = () => {
+	router.push('/posts/create');
+};
+</script>
+
+<style lang="scss" scoped></style>

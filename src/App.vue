@@ -4,7 +4,9 @@ import TheHeader from './layouts/TheHeader.vue';
 
 <template>
 	<TheHeader />
-	<RouterView />
+	<div class="container py-4">
+		<RouterView />
+	</div>
 </template>
 
 <style></style>
