@@ -28,6 +28,20 @@
 								>about</RouterLink
 							>
 						</li>
+						<li class="nav-item">
+							<RouterLink class="nav-link" active-class="active" to="/posts"
+								>게시글</RouterLink
+							>
+						</li>
+						<div class="d-flex">
+							<button
+								class="btn btn-outline-success"
+								type="button"
+								@click="goPage"
+							>
+								굴쓰기
+							</button>
+						</div>
 						<li class="nav-item dropdown">
 							<a
 								class="nav-link dropdown-toggle"
