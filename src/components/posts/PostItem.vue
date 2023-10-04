@@ -21,7 +21,7 @@ defineProps({
 		type: String,
 	},
 	createdAt: {
-		type: [String, Date, Number],
+		type: [String],
 	},
 });
 </script>
