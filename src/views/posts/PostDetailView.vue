@@ -16,7 +16,7 @@
         <button class="btn btn-outline-dark" @click="goListPage">목록</button>
       </div>
       <div class="col-auto">
-        <button class="btn btn-outline-primary">수정</button>
+        <button class="btn btn-outline-primary" @click="goEditPage">수정</button>
       </div>
       <div class="col-auto">
         <button class="btn btn-outline-danger">삭제</button>
@@ -26,7 +26,20 @@
 </template>
 
 <script setup lang="ts">
-const goListPage = () => {}
+import { useRoute, useRouter } from 'vue-router'
+
+const route = useRoute()
+const router = useRouter()
+
+const id = route.params.id
+
+const goListPage = () => {
+  return router.push({ name: 'PostList' })
+}
+
+const goEditPage = () => {
+  return router.push({ name: 'PostEdit', params: { id: 1 } })
+}
 </script>
 
 <style lang="scss" scoped></style>

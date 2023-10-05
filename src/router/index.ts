@@ -35,6 +35,7 @@ const router = createRouter({
     },
     {
       path: '/posts/:id/edit',
+      name: 'PostEdit',
       component: PostEditView
     }
   ]

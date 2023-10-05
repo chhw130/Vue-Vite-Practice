@@ -29,7 +29,6 @@ const fetchPosts = () => {
 }
 
 const goPage = (id: number) => {
-  // router.push(`/posts/${id}`);
   router.push({ name: 'PostDetail', params: { id } })
 }
 
