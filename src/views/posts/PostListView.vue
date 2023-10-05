@@ -28,7 +28,7 @@ const fetchPosts = () => {
 	posts.value = getPosts();
 };
 
-const goPage = id => {
+const goPage = (id : number) => {
 	router.push(`/posts/${id}`);
 };
 
