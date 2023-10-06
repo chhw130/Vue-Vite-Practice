@@ -64,6 +64,6 @@ export const updatePost = (id: string | string[], data: PostData) => {
   return instance.put(`/posts/${id}`, data)
 }
 
-export const deletePost = (id: number) => {
+export const deletePost = (id: string | string[]) => {
   return instance.delete(`/posts/${id}`)
 }

@@ -19,14 +19,14 @@
         <button class="btn btn-outline-primary" @click="goEditPage">수정</button>
       </div>
       <div class="col-auto">
-        <button class="btn btn-outline-danger">삭제</button>
+        <button class="btn btn-outline-danger" @click="deletePostHandler">삭제</button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { getPostById } from '@/api/posts'
+import { getPostById, deletePost } from '@/api/posts'
 import { useRoute, useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { PostData } from '@/api/posts'
@@ -52,6 +52,14 @@ const setPost = ({ title, content, createdAt }) => {
   post.value.createdAt = createdAt
 }
 fetchPost()
+
+const deletePostHandler = async () => {
+  if (confirm('삭제 하시겠습니까?') === false) {
+    return
+  }
+  await deletePost(id)
+  return router.push({ name: 'PostList' })
+}
 
 const goListPage = () => {
   return router.push({ name: 'PostList' })
