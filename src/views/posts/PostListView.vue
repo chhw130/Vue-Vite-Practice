@@ -17,15 +17,16 @@
 <script setup lang="ts">
 import PostItem from '@/components/posts/PostItem.vue'
 import { ref } from 'vue'
-import { getPosts } from '@/api/posts'
+import { PostData, getPosts } from '@/api/posts'
 import { useRouter } from 'vue-router'
 
-const posts = ref([])
+const posts = ref<PostData[]>([])
 
 const router = useRouter()
 
-const fetchPosts = () => {
-  posts.value = getPosts()
+const fetchPosts = async () => {
+  const postsData = await getPosts()
+  posts.value = postsData
 }
 
 const goPage = (id: number) => {
