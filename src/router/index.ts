@@ -4,6 +4,7 @@ import PostCreateView from '@/views/posts/PostCreateView.vue'
 import PostDetailView from '@/views/posts/PostDetailView.vue'
 import PostEditView from '@/views/posts/PostEditView.vue'
 import PostListView from '@/views/posts/PostListView.vue'
+import NotFound from '@/views/NotFoundView.vue'
 
 const router = createRouter({
   history: createWebHistory('/'),
@@ -37,6 +38,11 @@ const router = createRouter({
       path: '/posts/:id/edit',
       name: 'PostEdit',
       component: PostEditView
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFound
     }
   ]
 })
