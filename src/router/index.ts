@@ -5,6 +5,9 @@ import PostDetailView from '@/views/posts/PostDetailView.vue'
 import PostEditView from '@/views/posts/PostEditView.vue'
 import PostListView from '@/views/posts/PostListView.vue'
 import NotFound from '@/views/NotFoundView.vue'
+import NestedView from '@/views/nested/NestedView.vue'
+import NestedOneView from '@/views/nested/NestedOneView.vue'
+import NestedTwoView from '@/views/nested/NesetedTwoView.vue'
 
 const router = createRouter({
   history: createWebHistory('/'),
@@ -43,6 +46,23 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: NotFound
+    },
+    {
+      path: '/nested',
+      name: 'Nested',
+      component: NestedView,
+      children: [
+        {
+          path: 'one',
+          name: 'NestOne',
+          component: NestedOneView
+        },
+        {
+          path: 'two',
+          name: 'NestTwo',
+          component: NestedTwoView
+        }
+      ]
     }
   ]
 })
