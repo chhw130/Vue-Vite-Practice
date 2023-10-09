@@ -55,7 +55,7 @@
 <script setup lang="ts">
 import { PostData, getPosts } from '@/api/posts'
 import PostItem from '@/components/posts/PostItem.vue'
-import { computed, ref, watchEffect } from 'vue'
+import { computed, ref, watch, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 
 const posts = ref<PostData[]>([])
@@ -84,6 +84,13 @@ const goPage = (id: number) => {
 }
 
 watchEffect(fetchPosts)
+
+watch(
+  () => params.value._limit,
+  () => {
+    return (params.value._page = 1)
+  }
+)
 </script>
 
 <style lang="scss" scoped></style>
