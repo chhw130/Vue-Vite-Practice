@@ -6,12 +6,5 @@
     "cypress.config.*",
     "nightwatch.conf.*",
     "playwright.config.*"
-  ],
-  "compilerOptions": {
-    "composite": true,
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "Node",
-    "types": ["node"]
-  }
+  ]
 }
