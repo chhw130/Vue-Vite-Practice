@@ -46,8 +46,16 @@ export interface PostData {
   createdAt?: any
 }
 
-export const getPosts = async () => {
-  const res = await instance.get('posts')
+export interface PostParamsType {
+  _sort: string
+  _order: string
+  _limit: number
+}
+
+export const getPosts = async (params: PostParamsType) => {
+  const res = await instance.get('posts', {
+    params
+  })
   return res.data
 }
 
@@ -57,7 +65,7 @@ export const getPostById = async (id: string | string[]) => {
 }
 
 export const createPost = (data: PostData) => {
-  return instance.post('/posts', data)
+  return instance.post('posts', data)
 }
 
 export const updatePost = (id: string | string[], data: PostData) => {

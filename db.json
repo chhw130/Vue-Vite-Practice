@@ -1,42 +1,14 @@
 {
   "posts": [
-    {
-      "title": "안녕하세요",
-      "content": "HI",
-      "id": 1
-    },
-    {
-      "id": 2,
-      "title": "제목2",
-      "content": "내용2",
-      "createdAt": "2020-01-02"
-    },
-    {
-      "id": 4,
-      "title": "제목4",
-      "content": "내용4",
-      "createdAt": "2020-01-04"
-    },
-    {
-      "title": "제목5",
-      "content": "내용5123",
-      "id": 5
-    },
-    {
-      "title": "123",
-      "content": "123",
-      "createdAt": 1696567678647,
-      "id": 6
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+    { "title": "안녕하세요1", "content": "HI", "id": 1, "createdAt": "2021-01-01" },
+    { "title": "안녕하세요2", "content": "HI", "id": 2, "createdAt": "2021-01-01" },
+    { "title": "안녕하세요3", "content": "HI", "id": 3, "createdAt": "2021-01-01" },
+    { "title": "안녕하세요4", "content": "HI", "id": 4, "createdAt": "2021-01-01" },
+    { "title": "안녕하세요5", "content": "HI", "id": 5, "createdAt": "2021-01-01" },
+    { "title": "안녕하세요6", "content": "HI", "id": 6, "createdAt": "2021-01-01" },
+    { "title": "안녕하세요7", "content": "HI", "id": 7, "createdAt": "2021-01-01" },
+    { "title": "안녕하세요8", "content": "HI", "id": 8, "createdAt": "2021-01-01" },
+    { "title": "안녕하세요9", "content": "HI", "id": 9, "createdAt": "2021-01-01" },
+    { "title": "안녕하세요10", "content": "HI", "id": 10, "createdAt": "2021-01-01" }
+  ]
 }

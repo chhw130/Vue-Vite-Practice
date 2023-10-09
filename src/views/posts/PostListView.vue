@@ -12,20 +12,41 @@
         />
       </div>
     </div>
+    <nav class="mt-5 justify-content-center" aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 <script setup lang="ts">
+import { PostData, getPosts } from '@/api/posts'
 import PostItem from '@/components/posts/PostItem.vue'
 import { ref } from 'vue'
-import { PostData, getPosts } from '@/api/posts'
 import { useRouter } from 'vue-router'
 
 const posts = ref<PostData[]>([])
+const params = ref({
+  _sort: 'createdAt',
+  _order: 'desc',
+  _limit: 3
+})
 
 const router = useRouter()
-
 const fetchPosts = async () => {
-  const postsData = await getPosts()
+  const postsData = await getPosts(params.value)
   posts.value = postsData
 }
 
