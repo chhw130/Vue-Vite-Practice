@@ -14,16 +14,22 @@
     </div>
     <nav class="mt-5 justify-content-center" aria-label="Page navigation example">
       <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
+        <li class="page-item" :class="{ disabled: params._page === 1 }">
+          <a class="page-link" @click="--params._page" href="#" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
+        <li
+          v-for="page in totalPage"
+          :key="page"
+          class="page-item"
+          :class="{ active: params._page === page }"
+          @click="params._page = page"
+        >
+          <a class="page-link" href="#">{{ page }}</a>
+        </li>
+        <li class="page-item" :class="{ disabled: params._page >= totalPage }">
+          <a class="page-link" href="#" @click="++params._page" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
@@ -34,19 +40,26 @@
 <script setup lang="ts">
 import { PostData, getPosts } from '@/api/posts'
 import PostItem from '@/components/posts/PostItem.vue'
-import { ref } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 
 const posts = ref<PostData[]>([])
+
+/**pagination */
 const params = ref({
   _sort: 'createdAt',
   _order: 'desc',
+  _page: 1,
   _limit: 3
 })
 
+const totalPost = ref(0)
+const totalPage = computed(() => Math.ceil(totalPost.value / params.value._limit))
+
 const router = useRouter()
 const fetchPosts = async () => {
-  const postsData = await getPosts(params.value)
+  const { data: postsData, headers } = await getPosts(params.value)
+  totalPost.value = headers['x-total-count']
   posts.value = postsData
 }
 
@@ -54,7 +67,7 @@ const goPage = (id: number) => {
   router.push({ name: 'PostDetail', params: { id } })
 }
 
-fetchPosts()
+watchEffect(fetchPosts)
 </script>
 
 <style lang="scss" scoped></style>

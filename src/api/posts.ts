@@ -56,7 +56,7 @@ export const getPosts = async (params: PostParamsType) => {
   const res = await instance.get('posts', {
     params
   })
-  return res.data
+  return res
 }
 
 export const getPostById = async (id: string | string[]) => {
