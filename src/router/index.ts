@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import PostCreateView from '@/views/posts/PostCreateView.vue'
 import PostDetailView from '@/views/posts/PostDetailView.vue'

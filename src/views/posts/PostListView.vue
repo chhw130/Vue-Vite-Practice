@@ -58,15 +58,23 @@ import PostItem from '@/components/posts/PostItem.vue'
 import { computed, ref, watch, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 
-const posts = ref<PostData[]>([])
+const posts = ref<Array<PostData>>([])
+
+interface ParamsRefType {
+  _sort: string
+  _order: string
+  _page: number
+  _limit: number
+  title_like: string
+}
 
 /**pagination */
-const params = ref({
+const params = ref<ParamsRefType>({
   _sort: 'createdAt',
   _order: 'desc',
   _page: 1,
   _limit: 3,
-  title_like: null
+  title_like: ''
 })
 
 const totalPost = ref(0)
@@ -80,7 +88,7 @@ const fetchPosts = async () => {
 }
 
 const goPage = (id: number) => {
-  router.push({ name: 'PostDetail', params: { id } })
+  return router.push({ name: 'PostDetail', params: { id } })
 }
 
 watchEffect(fetchPosts)
