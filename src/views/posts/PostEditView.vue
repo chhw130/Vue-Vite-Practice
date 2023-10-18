@@ -13,10 +13,11 @@
 <script setup lang="ts">
 import { PostData, getPostById, updatePost } from '@/api/posts'
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import PostForm from '@/components/posts/PostForm.vue'
 
 const route = useRoute()
+const router = useRouter()
 const id = route.params.id
 
 const formData = ref<PostData>({
@@ -37,6 +38,10 @@ const setForm = (data: PostData) => {
 
 const editPost = async () => {
   await updatePost(id, formData.value)
+  goDetailPage()
+}
+const goDetailPage = () => {
+  return router.push({ name: 'PostDetail', params: { id } })
 }
 
 fetchPost()

@@ -2,8 +2,8 @@
   "posts": [
     {
       "title": "안녕하세요1",
-      "content": "HI",
-      "createdAt": 1696842022486,
+      "content": "HI123wqeffqfqewfqweferqg",
+      "createdAt": 1697623635071,
       "id": 1
     },
     {
@@ -59,6 +59,12 @@
       "content": "HI",
       "id": 10,
       "createdAt": "2021-01-01"
+    },
+    {
+      "title": "132152415",
+      "content": "14352523",
+      "createdAt": 1697623509666,
+      "id": 11
     }
   ]
 }
