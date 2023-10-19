@@ -17,15 +17,17 @@
       </div>
     </form>
   </div>
+  <AppAlert :alerts />
 </template>
 
 <script setup lang="ts">
 import { PostData, createPost } from '@/api/posts'
+import { useAlert } from '@/composables/alert'
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
-import { useAlert } from '@/composables/alert.ts'
+import AppAlert from '@/components/design/AppAlert.vue'
 
-const {} = useAlert()
+const { alerts, vAlert, vSuccess } = useAlert()
 
 const router = useRouter()
 
@@ -39,8 +41,11 @@ const submitHandler = () => {
   try {
     createPost(form)
     router.push({ name: 'PostList' })
+
+    vSuccess('등록이 완료되었습니다.')
   } catch (err) {
     console.log(err)
+    vAlert(err.message)
   }
 }
 
