@@ -23,6 +23,9 @@
 import { PostData, createPost } from '@/api/posts'
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAlert } from '@/composables/alert.ts'
+
+const {} = useAlert()
 
 const router = useRouter()
 

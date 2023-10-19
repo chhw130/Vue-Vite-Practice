@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-const useAlert = () => {
+export const useAlert = () => {
   const alerts = ref([])
 
   const vAlert = (mes: string, type = 'error') => {
@@ -11,4 +11,10 @@ const useAlert = () => {
   }
 
   const vSuccess = (mes: string) => vAlert(mes, 'success')
+
+  return {
+    alerts,
+    vAlert,
+    vSuccess
+  }
 }
