@@ -1,12 +1,12 @@
 <template>
-  <footer>Footer</footer>
+  <footer></footer>
 </template>
 
 <script setup lang="ts"></script>
 
 <style scoped lang="css">
 footer {
-  background-color: orange;
+  background-color: #0d6efd;
   height: 20vh;
   bottom: 0;
   position: absolute;
