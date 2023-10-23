@@ -12,6 +12,9 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "Node",
-    "types": ["node"]
+    "types": ["node"],
+    "paths": {
+      "@/*": ["src/*"]
+    }
   }
 }
