@@ -17,7 +17,6 @@
       </div>
     </form>
   </div>
-  <AppAlert :alerts />
 </template>
 
 <script setup lang="ts">
