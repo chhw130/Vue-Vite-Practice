@@ -14,6 +14,8 @@
       <div class="pt-4">
         <button type="button" class="btn btn-outline-dark me-2" @click="goListPage">목록</button>
         <button class="btn btn-primary" type="submit">저장</button>
+
+        <div v-if="isPending">is Loadng...</div>
       </div>
     </form>
   </div>
@@ -25,6 +27,8 @@ import { useAlert } from '@/composables/alert'
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import AppAlert from '@/components/design/AppAlert.vue'
+import axios from 'axios'
+import { useMutation } from '@tanstack/vue-query'
 
 const { alerts, vAlert, vSuccess } = useAlert()
 
@@ -36,17 +40,39 @@ const form = reactive<PostData>({
   createdAt: Date.now()
 })
 
-const submitHandler = () => {
-  try {
-    createPost(form)
-    router.push({ name: 'PostList' })
+const instance = axios.create({
+  baseURL: import.meta.env.VITE_APP_API_URL
+})
 
-    vSuccess('등록이 완료되었습니다.')
-  } catch (err) {
-    console.log(err)
-    vAlert(err.message)
-  }
+const createPost = (data: PostData) => {
+  return instance.post('/posts', data)
 }
+
+const { mutateAsync: mutateCreatePost, isPending } = useMutation({
+  mutationFn: (formData: any) => createPost(formData),
+  onSuccess: () => {
+    console.log('성공')
+  },
+  onError: () => {
+    console.log('err')
+  }
+})
+
+const submitHandler = () => {
+  mutateCreatePost(form)
+}
+
+// const submitHandler = () => {
+//   try {
+//     createPost(form)
+//     router.push({ name: 'PostList' })
+
+//     vSuccess('등록이 완료되었습니다.')
+//   } catch (err) {
+//     console.log(err)
+//     vAlert(err.message)
+//   }
+// }
 
 const goListPage = () => {
   return router.push({ name: 'PostList' })

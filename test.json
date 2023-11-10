@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "title": "안녕하세요1",
+      "content": "HI123wqeffqfqewfqweferqg",
+      "createdAt": 1697623635071,
+      "id": 1
+    },
+    {
+      "title": null,
+      "content": null,
+      "createdAt": 1699606291857,
+      "id": 2
+    },
+    {
+      "title": null,
+      "content": null,
+      "createdAt": 1699606291857,
+      "id": 3
+    }
+  ]
+}
