@@ -15,6 +15,6 @@ import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
 
 <style>
 .main {
-  height: 90vh;
+  height: 95vh;
 }
 </style>

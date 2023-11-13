@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { PostData, createPost } from '@/api/posts'
+import { PostData } from '@/api/posts'
 import { useAlert } from '@/composables/alert'
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
@@ -54,13 +54,10 @@ const { mutateAsync: mutateCreatePost, isPending } = useMutation({
   mutationFn: (formData: any) => createPost(formData),
   onSuccess: async () => {
     console.log('성공')
-    await queryClient.invalidateQueries(
-      {
-        queryKey: ['todo'],
-        refetchType: 'active'
-      },
-      { cancelRefetch, throwOnError }
-    )
+    await queryClient.invalidateQueries({
+      queryKey: ['todo'],
+      refetchType: 'active'
+    })
   },
 
   onError: () => {

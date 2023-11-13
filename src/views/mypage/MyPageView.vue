@@ -11,8 +11,10 @@
           </div>
         </div>
       </div>
-
-      <span v-if="bottom">Loading...</span>
+      <div class="loader">
+        <InfiniteLoading v-if="hasNextPage" target=".result" @infinite="fetchNextPage()" />
+      </div>
+      <!-- <span v-if="bottom">Loading...</span> -->
     </template>
   </div>
 </template>
@@ -20,7 +22,9 @@
 <script setup lang="ts">
 import { useInfiniteQuery } from '@tanstack/vue-query'
 import axios from 'axios'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
+import InfiniteLoading from 'v3-infinite-loading'
+import 'v3-infinite-loading/lib/style.css'
 
 interface PeopleType {
   name: string
@@ -48,21 +52,6 @@ const getData = async (pageParamUrl: any) => {
 const content = ref()
 const bottom = ref(false)
 
-const doScroll = (event) => {
-  const scrollHeight = event.target.scrollHeight
-  const scrollTop = event.target.scrollTop
-  const clientHeight = event.target.clientHeight
-
-  if (!hasNextPage) return (bottom.value = false)
-
-  if (scrollTop + clientHeight > scrollHeight - 1) {
-    fetchNextPage()
-    bottom.value = true
-  } else {
-    bottom.value = false
-  }
-}
-
 const {
   data: peopleData,
   fetchNextPage,
@@ -78,17 +67,34 @@ const {
     return lastPage.next || undefined
   }
 })
-
-onMounted(() => {
-  content.value.addEventListener('scroll', doScroll)
-})
 </script>
 
 <style scoped>
-.content {
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-weight: 300;
+  width: 400px;
+  padding: 10px;
+  text-align: center;
+  background: #eceef0;
+  border-radius: 10px;
+  margin: 3px;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+.container {
+  overflow: visible;
+}
+/* .content {
   width: 100%;
   min-height: 100%;
   overflow-y: scroll;
   height: 100%;
-}
+} */
 </style>
