@@ -1,25 +1,32 @@
 <template>
-  <section>
-    <p v-if="isFetching">...Loading</p>
+  <div class="content" ref="content">
+    <p v-if="isLoading">...Loading</p>
     <template v-else>
-      <div v-for="data in peopleData?.pages" :key="data.name">
-        <div class="people" v-for="mainData in data.results">
-          <span>{{ mainData.name }} / {{ mainData.height }} / {{ mainData.hair_color }}</span>
+      <div v-for="(data, index) in peopleData?.pages" :key="index">
+        <div class="card m-4 people" v-for="mainData in data.results" :key="mainData.name">
+          <div class="card-body">
+            <span>name : {{ mainData.name }}</span>
+            <p>height : {{ mainData.height }}</p>
+            <p>gender : {{ mainData.gender }}</p>
+          </div>
         </div>
       </div>
+
+      <span v-if="bottom">Loading...</span>
     </template>
-    <button @click="getNextData()">New Data</button>
-  </section>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { useInfiniteQuery } from '@tanstack/vue-query'
 import axios from 'axios'
+import { onMounted, ref } from 'vue'
 
 interface PeopleType {
   name: string
   height: string
   mass: string
+  gender: string
   hair_color: string
 }
 
@@ -38,10 +45,28 @@ const getData = async (pageParamUrl: any) => {
   return data
 }
 
+const content = ref()
+const bottom = ref(false)
+
+const doScroll = (event) => {
+  const scrollHeight = event.target.scrollHeight
+  const scrollTop = event.target.scrollTop
+  const clientHeight = event.target.clientHeight
+
+  if (!hasNextPage) return (bottom.value = false)
+
+  if (scrollTop + clientHeight > scrollHeight - 1) {
+    fetchNextPage()
+    bottom.value = true
+  } else {
+    bottom.value = false
+  }
+}
+
 const {
   data: peopleData,
-  isFetching,
   fetchNextPage,
+  isLoading,
   hasNextPage
 } = useInfiniteQuery({
   queryKey: ['people'],
@@ -53,15 +78,17 @@ const {
     return lastPage.next || undefined
   }
 })
-const getNextData = () => {
-  fetchNextPage()
-  console.log(peopleData)
-}
+
+onMounted(() => {
+  content.value.addEventListener('scroll', doScroll)
+})
 </script>
 
 <style scoped>
-.people {
-  height: 100px;
-  border: 1px solid salmon;
+.content {
+  width: 100%;
+  min-height: 100%;
+  overflow-y: scroll;
+  height: 100%;
 }
 </style>
