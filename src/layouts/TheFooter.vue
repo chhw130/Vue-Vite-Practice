@@ -7,9 +7,8 @@
 <style scoped lang="css">
 footer {
   background-color: #0d6efd;
-  height: 20vh;
-  bottom: 0;
-  position: absolute;
+  height: 100px;
+
   width: 100%;
 }
 </style>

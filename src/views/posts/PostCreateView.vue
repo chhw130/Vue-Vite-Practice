@@ -28,7 +28,7 @@ import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import AppAlert from '@/components/design/AppAlert.vue'
 import axios from 'axios'
-import { useMutation } from '@tanstack/vue-query'
+import { useMutation, useQueryClient } from '@tanstack/vue-query'
 
 const { alerts, vAlert, vSuccess } = useAlert()
 
@@ -48,11 +48,21 @@ const createPost = (data: PostData) => {
   return instance.post('/posts', data)
 }
 
+const queryClient = useQueryClient()
+
 const { mutateAsync: mutateCreatePost, isPending } = useMutation({
   mutationFn: (formData: any) => createPost(formData),
-  onSuccess: () => {
+  onSuccess: async () => {
     console.log('성공')
+    await queryClient.invalidateQueries(
+      {
+        queryKey: ['todo'],
+        refetchType: 'active'
+      },
+      { cancelRefetch, throwOnError }
+    )
   },
+
   onError: () => {
     console.log('err')
   }

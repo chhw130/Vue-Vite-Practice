@@ -8,6 +8,7 @@ import NotFound from '@/views/NotFoundView.vue'
 import NestedView from '@/views/nested/NestedView.vue'
 import NestedOneView from '@/views/nested/NestedOneView.vue'
 import NestedTwoView from '@/views/nested/NesetedTwoView.vue'
+import MyPageView from '@/views/mypage/MyPageView.vue'
 
 const router = createRouter({
   history: createWebHistory('/'),
@@ -46,6 +47,11 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: NotFound
+    },
+    {
+      path: '/my',
+      name: 'Mypage',
+      component: MyPageView
     },
     {
       path: '/nested',

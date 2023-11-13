@@ -6,11 +6,15 @@ import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
 
 <template>
   <TheHeader />
-  <div class="container py-4">
+  <main class="container py-4 main">
     <RouterView />
-  </div>
-  <TheFooter />
+  </main>
+  <!-- <TheFooter /> -->
   <VueQueryDevtools />
 </template>
 
-<style></style>
+<style>
+.main {
+  height: 90vh;
+}
+</style>
