@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { useTodo } from '@/composables/useTodo'
-import { useQuery } from '@tanstack/vue-query'
-import axios from 'axios'
 
 const { data, isLoading, refetch } = useTodo()
+
 </script>
 
 <template>
