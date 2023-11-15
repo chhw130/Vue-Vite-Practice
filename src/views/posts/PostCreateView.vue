@@ -23,16 +23,9 @@
 
 <script setup lang="ts">
 import { PostData } from '@/api/posts'
-import { useAlert } from '@/composables/alert'
 import { reactive } from 'vue'
-import { useRouter } from 'vue-router'
-import AppAlert from '@/components/design/AppAlert.vue'
 import axios from 'axios'
-import { useMutation, useQueryClient } from '@tanstack/vue-query'
-
-const { alerts, vAlert, vSuccess } = useAlert()
-
-const router = useRouter()
+import { useMutation } from '@tanstack/vue-query'
 
 const form = reactive<PostData>({
   title: null,
@@ -44,46 +37,24 @@ const instance = axios.create({
   baseURL: import.meta.env.VITE_APP_API_URL
 })
 
-const createPost = (data: PostData) => {
-  return instance.post('/posts', data)
-}
-
-const queryClient = useQueryClient()
-
-const { mutateAsync: mutateCreatePost, isPending } = useMutation({
-  mutationFn: (formData: any) => createPost(formData),
-  onSuccess: async () => {
-    console.log('성공')
-    await queryClient.invalidateQueries({
-      queryKey: ['todo'],
-      refetchType: 'active'
-    })
-  },
-
-  onError: () => {
-    console.log('err')
-  }
-})
-
+/**form submit event */
 const submitHandler = () => {
   mutateCreatePost(form)
 }
 
-// const submitHandler = () => {
-//   try {
-//     createPost(form)
-//     router.push({ name: 'PostList' })
-
-//     vSuccess('등록이 완료되었습니다.')
-//   } catch (err) {
-//     console.log(err)
-//     vAlert(err.message)
-//   }
-// }
-
-const goListPage = () => {
-  return router.push({ name: 'PostList' })
+const createPost = (data: PostData) => {
+  return instance.post('/posts', data)
 }
+
+const { mutateAsync: mutateCreatePost, isPending } = useMutation({
+  mutationFn: (formData: PostData) => createPost(formData),
+  onSuccess: async () => {
+    console.log('성공')
+  },
+  onError: () => {
+    console.log('에러')
+  }
+})
 </script>
 
 <style lang="scss" scoped></style>

@@ -14,7 +14,6 @@
       <div class="loader">
         <InfiniteLoading v-if="hasNextPage" target=".result" @infinite="fetchNextPage()" />
       </div>
-      <!-- <span v-if="bottom">Loading...</span> -->
     </template>
   </div>
 </template>
@@ -43,7 +42,7 @@ interface PeopleApiType {
 
 const INIT_BASE_URL = `https://swapi.dev/api/people/`
 
-const getData = async (pageParamUrl: any) => {
+const getData = async (pageParamUrl: string) => {
   const res = await axios.get(pageParamUrl)
   const data: PeopleApiType = await res.data
   return data

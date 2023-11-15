@@ -1,11 +1,9 @@
 <script setup lang="ts">
+import { useTodo } from '@/composables/useTodo'
 import { useQuery } from '@tanstack/vue-query'
 import axios from 'axios'
 
-const { data, isLoading, refetch, error, isSuccess } = useQuery({
-  queryKey: ['todo'],
-  queryFn: () => axios.get('https://jsonplaceholder.typicode.com/users').then((res) => res.data)
-})
+const { data, isLoading, refetch } = useTodo()
 </script>
 
 <template>
@@ -13,5 +11,15 @@ const { data, isLoading, refetch, error, isSuccess } = useQuery({
   <button @click="refetch()">다시 불러오기</button>
 
   <div v-if="isLoading">is Loading...</div>
-  <section>{{ data }}</section>
+  <section>
+    <div v-for="(ele, index) in data" :key="index">
+      <div class="card m-4">
+        <div class="card-body">
+          <span>name : {{ ele.name }}</span>
+          <p>height : {{ ele.email }}</p>
+          <p>gender : {{ ele.phone }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
