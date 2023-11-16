@@ -7,64 +7,10 @@
       "id": 1
     },
     {
-      "title": "안녕하세요2",
-      "content": "HI",
-      "id": 2,
-      "createdAt": "2021-01-01"
-    },
-    {
-      "title": "오랜만입니다.123",
-      "content": "오래간만123",
-      "createdAt": 1696842179214,
-      "id": 3
-    },
-    {
-      "title": "안녕하세요4",
-      "content": "HI",
-      "id": 4,
-      "createdAt": "2021-01-01"
-    },
-    {
-      "title": "안녕하세요5",
-      "content": "HI",
-      "id": 5,
-      "createdAt": "2021-01-01"
-    },
-    {
-      "title": "안녕하세요6",
-      "content": "HI",
-      "id": 6,
-      "createdAt": "2021-01-01"
-    },
-    {
-      "title": "안녕하세요7",
-      "content": "HI",
-      "id": 7,
-      "createdAt": "2021-01-01"
-    },
-    {
-      "title": "안녕하세요8",
-      "content": "HI",
-      "id": 8,
-      "createdAt": "2021-01-01"
-    },
-    {
-      "title": "안녕하세요9",
-      "content": "HI",
-      "id": 9,
-      "createdAt": "2021-01-01"
-    },
-    {
-      "title": "안녕하세요10",
-      "content": "HI",
-      "id": 10,
-      "createdAt": "2021-01-01"
-    },
-    {
-      "title": "132152415",
-      "content": "14352523",
-      "createdAt": 1697623509666,
-      "id": 11
+      "title": "오케스트로",
+      "content": "hi",
+      "createdAt": 1700134937016,
+      "id": 2
     }
   ]
 }

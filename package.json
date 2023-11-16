@@ -10,7 +10,7 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "db": "json-server --watch db.json --port 5000",
+    "db": "json-server ./db.json --port 4000",
     "test": "json-server --watch test.json --port 5000"
   },
   "dependencies": {
