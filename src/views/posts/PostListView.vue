@@ -55,6 +55,7 @@
 <script setup lang="ts">
 import { PostData, getPosts } from '@/api/posts'
 import PostItem from '@/components/posts/PostItem.vue'
+import { useQuery } from '@tanstack/vue-query'
 import { computed, ref, watch, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -86,6 +87,11 @@ const fetchPosts = async () => {
   totalPost.value = headers['x-total-count']
   posts.value = postsData
 }
+
+const { data } = useQuery({
+  queryKey: ['post'],
+  queryFn: () => getPosts(params.value)
+})
 
 const goPage = (id: number) => {
   return router.push({ name: 'PostDetail', params: { id } })

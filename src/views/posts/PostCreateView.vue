@@ -26,6 +26,7 @@ import { PostData } from '@/api/posts'
 import { reactive } from 'vue'
 import axios from 'axios'
 import { useMutation } from '@tanstack/vue-query'
+import { useRouter } from 'vue-router'
 
 const form = reactive<PostData>({
   title: null,
@@ -36,6 +37,8 @@ const form = reactive<PostData>({
 const instance = axios.create({
   baseURL: import.meta.env.VITE_APP_API_URL
 })
+
+const router = useRouter()
 
 /**form submit event */
 const submitHandler = () => {
@@ -55,6 +58,8 @@ const { mutateAsync: mutateCreatePost, isPending } = useMutation({
     console.log('에러')
   }
 })
+
+const goListPage = () => router.push('/list')
 </script>
 
 <style lang="scss" scoped></style>
