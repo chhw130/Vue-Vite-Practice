@@ -2,7 +2,6 @@
 import { useTodo } from '@/composables/useTodo'
 
 const { data, isLoading, refetch } = useTodo()
-
 </script>
 
 <template>
