@@ -24,6 +24,7 @@ import axios from 'axios'
 import { ref } from 'vue'
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
+import { useTodo } from '@/composables/useTodo'
 
 interface PeopleType {
   name: string
@@ -39,6 +40,8 @@ interface PeopleApiType {
   previous: boolean
   results: PeopleType[]
 }
+
+const { data } = useTodo()
 
 const INIT_BASE_URL = `https://swapi.dev/api/people/`
 

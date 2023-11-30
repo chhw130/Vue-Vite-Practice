@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/vue-query'
+import { computed } from '@vue/reactivity'
 import axios from 'axios'
+import { ref, watch } from 'vue'
 
 export const useTodo = () => {
   const {
@@ -7,7 +9,7 @@ export const useTodo = () => {
     isLoading,
     refetch
   } = useQuery({
-    queryKey: ['todo'],
+    queryKey: ['users'],
     queryFn: () => axios.get('https://jsonplaceholder.typicode.com/users').then((res) => res.data)
   })
 
